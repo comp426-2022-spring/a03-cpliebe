@@ -1,25 +1,26 @@
 {
   "name": "a03-cpliebe",
-  "version": "1.0.0",
-  "description": "[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7141447&assignment_repo_type=AssignmentRepo) # a03 This assignment will introduce creating APIs using Express.js",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Build a simple API",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node server.js --port=5555",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/comp426-2022-spring/a03-cpliebe.git"
+    "url": "git+https://github.com/comp426-2022-spring/a03-jenlevy.git"
   },
   "author": "Colin Liebe",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/comp426-2022-spring/a03-cpliebe/issues"
+    "url": "https://github.com/comp426-2022-spring/a03-jenlevy/issues"
   },
-  "homepage": "https://github.com/comp426-2022-spring/a03-cpliebe#readme",
+  "homepage": "https://github.com/comp426-2022-spring/a03-jenlevy#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.6",
+    "yargs": "^17.4.1"
   },
   "devDependencies": {}
 }
