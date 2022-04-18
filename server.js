@@ -1,3 +1,4 @@
+
 const express = require('express')
 const { count } = require('yargs')
 const app = express()
@@ -8,22 +9,29 @@ var port = args.port || 5000 || process.env.PORT
 
 // one random coin flip
 function coinFlip() {
-    var random = Math.random()
+    let flip = Math.random()
+    var result = ""
     if (flip > 0.5){
-      return "heads"
+      result = "heads"
     } else {
-      return "tails"
+      result = "tails"
     }
+    return result
 }
 
 //many random coin flips
 function coinFlips(flips) {
-    if (flips<0||flips==0||typeof flips==="undefined"){flips = 1};
-  const results = [];
-  for (var i = 0; i < flips; i++) {
-    results.push(coinFlip());
-  }
-  return results;
+    var flipArray = new Array(flips)
+
+    for(var i = 0; i<flips; i++){
+    var flip = Math.random()
+    if (flip<0.5){
+        flipArray[i] = "heads"
+    } else {
+        flipArray[i] = "tails"
+    }
+}
+return flipArray
 
 }
 
@@ -52,20 +60,17 @@ function flipACoin(call) {
 // an array that tallies the random coin flips
 function countFlips(array) {
     
-    const counts = {
-        heads: 0,
-        tails: 0
-      }
-    
-      
-      for (var i = 0; i < array.length; i++) {
-        if (array[i] == "heads") {
-          counts.heads++;
-        } else if (array[i] == "tails") {
-          counts.tails++;
-      }
+    var heads = 0
+    var tails = 0
+            
+    for (var i = 0; i<array.length; i++){
+        if (array[i] == "heads"){
+            heads += 1
+        } else{
+            tails += 1
+        }
     }
-      return counts
+    return {"heads" : heads, "tails": tails}
 }
 
 const server = app.listen(port, () => {
