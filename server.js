@@ -8,69 +8,69 @@ var port = args.port || 5000 || process.env.PORT
 
 // one random coin flip
 function coinFlip() {
-    let flip = Math.random()
-    var result = ""
-    if (flip > 0.5){
-      result = "heads"
-    } else {
-      result = "tails"
-    }
-    return result
+    var random = Math.random()
+
+   if (random > 0.5) {
+     return "heads"
+   }
+   else {
+     return "tails"
+   }
 }
 
 //many random coin flips
 function coinFlips(flips) {
-    var flipArray = new Array(flips)
-
-    for(var i = 0; i<flips; i++){
-    var flip = Math.random()
-    if (flip<0.5){
-        flipArray[i] = "heads"
-    } else {
-        flipArray[i] = "tails"
+    if (flips<0||flips==0||typeof flips==="undefined"){flips = 1};
+    const results = [];
+    for (var i = 0; i < flips; i++) {
+      results.push(coinFlip());
     }
-}
-return flipArray
-
-}
+    return results;
+  }
 
 // flip a coin with a call to see if it matches the call
-function flipACoin(call) {
-
-    var result = ""
+function flipACoin(call2) {
+    var outcome = ""
     var flip = ""
     var num = Math.random()
-        
-    if (num < 0.5){
-        flip = "heads"
-    } else {
-        flip = "tails"
+  
+    if (call2 !== "heads" && call2 !== "tails") {
+      console.log("Error: no input. Usage: node guess-flip -- call=[heads|tails]")
+      return
     }
-        
-    if (flip == call){
-        result = "win"
-    } else {
-        result = "lose"
+    if (num < 0.5) {
+      flip = "heads"
     }
-        
-    return {"call": call, "flip": flip, "result": result}
-}
+    else { 
+      flip = "tails"
+    }
+    
+    if (flip == call2) {
+      outcome = "win"
+    }
+    else  {
+      outcome = "lose"
+    }
+    return {call: call2, flip: flip, result: outcome}
+  }
 
 // an array that tallies the random coin flips
 function countFlips(array) {
+    const counts = {
+        heads: 0,
+        tails: 0
+      }
     
-    var heads = 0
-    var tails = 0
-            
-    for (var i = 0; i<array.length; i++){
-        if (array[i] == "heads"){
-            heads += 1
-        } else{
-            tails += 1
-        }
+      
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] == "heads") {
+          counts.heads++;
+        } else if (array[i] == "tails") {
+          counts.tails++;
+      }
     }
-    return {"heads" : heads, "tails": tails}
-}
+      return counts
+    }
 
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',port))
